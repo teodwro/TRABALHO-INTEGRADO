@@ -27,7 +27,6 @@ final class EstagioVO extends VO {
     private $periodo_estagio_inicio;
     private $periodo_estagio_fim;
 
-
     public function __construct($id_estagio = 0,$id_estudante = 0, $nome_estudante = "", $id_curso_estagio = 0, $id_professor_orientador = 0, $id_professor_coorientador = 0, $encaminhamentos_secoes_estagio = "", $plano_atividades = "", $relatorio_final = "", $ficha_autoavaliacao = "",$ficha_avaliacao_empresa = "", $termo_compromisso = "",$supervisor_empresa = "",$cargo_formacao_supervisor = "",$telefone_supervisor_empresa = "",$email_supervisor_empresa = "",$numero_convenio = "",$tipo_processo = "",$status_processo = "",$carga_horaria = 0,$periodo_estagio_inicio = NULL,$periodo_estagio_fim = NULL,) {
         parent::__construct($id);
         $this->nome_estudante = $nome_estudante;

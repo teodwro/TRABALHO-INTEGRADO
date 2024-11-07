@@ -18,8 +18,11 @@
     <li>
         <a href="representantes.php">Representantes</a>
     </li>
-    
+    <li>
+        <a href="professores.php">Professores</a>
+    </li>
     <li>
         <a href="logout.php">Sair</a>
     </li>
+    
 </ul>

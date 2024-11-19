@@ -4,16 +4,16 @@ namespace Controller;
 
 abstract class Controller {
 
-    // public function __construct($obrigaLogin = true){
-    //     session_start();
+    public function __construct($obrigaLogin = true){
+        session_start();
 
-    //     if($obrigaLogin) {
-    //         if(!isset($_SESSION["usuario"])) {
-    //             $this->redirect("login.php");
-    //             exit;
-    //         }
-    //     }        
-    // }
+        if($obrigaLogin) {
+            if(!isset($_SESSION["usuario"])) {
+                $this->redirect("login.php");
+                exit;
+            }
+        }        
+    }
 
     public function redirect($url) {
         header("Location: " . $url);
@@ -24,10 +24,10 @@ abstract class Controller {
         include("views/" . $view . ".php");
     }
 
-    public function uploadFile($file){
-        if(empty($file["name"])){
+    public function uploadFile ($file) {
+        if(empty($file["name"])) {
             return "";
-        } 
+        }
 
         $extension = pathinfo($file["name"], PATHINFO_EXTENSION);
         $nomeArquivo = uniqid() . "." . $extension;
@@ -35,5 +35,4 @@ abstract class Controller {
 
         return $nomeArquivo;
     }
-
 }

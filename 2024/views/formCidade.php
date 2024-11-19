@@ -6,6 +6,9 @@
     <title>Sistema de Estágio</title>
 </head>
 <body>
+
+    <?php include("includes/menu.php"); ?>
+
     <h1>Sistema de Estágio - Cidades</h1>
     <a href="cidades.php">Voltar</a>
     <form action="salvarCidade.php" method="POST">
@@ -14,5 +17,6 @@
         <br>
         <button type="submit">Salvar</button>
     </form>
+    
 </body>
 </html>

@@ -6,6 +6,9 @@
     <title>Sistema de Estágio</title>
 </head>
 <body>
+
+    <?php include("includes/menu.php"); ?>
+
     <h1>Sistema de Estágio - Cidades</h1>
     <a href="cidade.php">Incluir nova</a>
     <table>

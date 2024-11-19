@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estágio</title>
 </head>
+
 <body>
+
+    <?php include("includes/menu.php"); ?>
+
     <h1>Sistema de Estágio - Estudantes</h1>
+    
+    <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
     <a href="estudante.php">Incluir nova</a>
+    <?php } ?>
+
     <table>
         <tr>
             <th>ID</th>
@@ -21,7 +29,7 @@
             <th>Matrícula</th>
             <th>Ações</th>
         </tr>
-        <?php foreach($estudantes as $estudante) { ?>
+        <?php foreach ($estudantes as $estudante) { ?>
             <tr>
                 <td><?php echo $estudante->getId(); ?></td>
                 <td><?php echo $estudante->getNomeEstudante(); ?></td>
@@ -29,7 +37,7 @@
                 <td><?php echo $estudante->getRg(); ?></td>
                 <td><?php echo $estudante->getEmail(); ?></td>
                 <td><?php echo $estudante->getEndereco(); ?></td>
-                
+
                 <td><?php echo $estudante->getCidadeId(); ?></td>
 
                 <td><?php echo $estudante->getTelefone(); ?></td>
@@ -44,4 +52,5 @@
         <?php } ?>
     </table>
 </body>
+
 </html>

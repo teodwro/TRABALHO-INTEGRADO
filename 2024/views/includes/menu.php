@@ -1,0 +1,16 @@
+<ul>
+    <li>
+        <a href="index.php">Estudantes</a>
+    </li>
+    <li>
+        <a href="cidades.php">Cidades</a>
+    </li>
+    <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
+    <li>
+        <a href="usuarios.php">Usuários</a>
+    </li>
+    <?php } ?>
+    <li>
+        <a href="logout.php">Sair</a>
+    </li>
+</ul>

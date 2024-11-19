@@ -6,9 +6,17 @@
     <title>Sistema de Estágio</title>
 </head>
 <body>
+
+    <?php include("includes/menu.php"); ?>
+
     <h1>Sistema de Estágio - Estudantes</h1>
 
     <a href="estudantes.php">Voltar</a>
+
+    <?php if (empty($cidades)) {
+        echo "<p>Adicione uma cidade antes! </p>";
+    } else { ?>
+
     <form action="salvarEstudante.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $estudante->getId(); ?>">
         <input type="text" name="nome_estudante" value="<?php echo $estudante->getNomeEstudante(); ?>" placeholder="Nome:" required> <br>
@@ -28,5 +36,8 @@
 
         <button type="submit">Salvar</button>
     </form>
+
+    <?php } ?>
+    
 </body>
 </html>

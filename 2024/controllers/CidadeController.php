@@ -17,6 +17,12 @@ final class CidadeController extends Controller {
     }
 
     public function form() {
+
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("cidades.php");
+            exit;
+        }
+
         $id = $_GET["id"] ?? 0;
 
         if(!empty($id)) {

@@ -10,6 +10,15 @@
         <a href="usuarios.php">Usuários</a>
     </li>
     <?php } ?>
+    
+    <li>
+        <a href="empresas.php">Empresas</a>
+    </li>
+
+    <li>
+        <a href="representantes.php">Representantes</a>
+    </li>
+    
     <li>
         <a href="logout.php">Sair</a>
     </li>

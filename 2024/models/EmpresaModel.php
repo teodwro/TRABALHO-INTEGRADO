@@ -40,67 +40,43 @@ final class EmpresaModel extends Model {
     public function insert ($vo) {
         $db = new Database();
         $query = "INSERT INTO empresas (nome_empresa, endereco_empresa, telefone_empresa, email_empresa, cnpj_empresa, representante_empresa) 
-                    VALUES (:login, :senha, :nivel)";
+                    VALUES (:nome_empresa, :endereco_empresa, :telefone_empresa, :email_empresa, :cnpj_empresa, :representante_empresa)";
         $binds = [
-            ":login" => $vo->getLogin(),
-            ":senha" => md5($vo->getSenha()),
-            ":nivel" => $vo->getNivel()
+            ":nome_empresa" => $vo->getNomeEmpresa(),
+            ":endereco_empresa" => $vo->getEnderecoEmpresa(),
+            ":telefone_empresa" => $vo->getTelefoneEmpresa(),
+            ":email_empresa" => $vo->getEmailEmpresa(),
+            ":cnpj_empresa" => $vo->getCnpjEmpresa(),
+            ":representante_empresa" => $vo->getRepresentanteEmpresa(),
         ];
 
         return $db->execute($query, $binds);
     }
     public function update ($vo) {
         $db = new Database();
-        if(empty($vo->getSenha())){
-            $query = "UPDATE usuarios SET login = :login, nivel = :nivel
-            WHERE id = :id";
-            
-            $binds = [
-                ":login" => $vo->getLogin(),
-                ":nivel" => $vo->getNivel(),
-                ":id" => $vo->getId()
-            ];
-        } else {
-            
-            $query = "UPDATE usuarios SET login = :login, 
-                        senha = :senha, nivel = :nivel, 
+       
+            $query = "UPDATE empresas SET nome_empresa = :nome_empresa, endereco_empresa = :endereco_empresa, 
+            telefone_empresa = :telefone_empresa, email_empresa = :email_empresa, cnpj_empresa = :cnpj_empresa, representante_empresa = :representante_empresa
                         WHERE id = :id";
             $binds = [
-                ":login" => $vo->getLogin(),
-                ":nivel" => $vo->getNivel(),
-                ":senha" => md5($vo->getSenha()),
-                ":id" => $vo->getId()
+                ":nome_empresa" => $vo->getNomeEmpresa(),
+                ":endereco_empresa" => $vo->getEnderecoEmpresa(),
+                ":telefone_empresa" => $vo->getTelefoneEmpresa(),
+                ":email_empresa" => $vo->getEmailEmpresa(),
+                ":cnpj_empresa" => $vo->getCnpjEmpresa(),
+                ":representante_empresa" => $vo->getRepresentanteEmpresa(),
+                ":id" => $vo->getIdEmpresa(),
             ];
-        }
+        
 
         return $db->execute($query, $binds);
     }
+    
     public function delete ($vo) {
         $db = new Database();
-        $query = "DELETE FROM usuarios WHERE id = :id";
-        $binds= [":id" => $vo->getId()];
+        $query = "DELETE FROM empresas WHERE id = :id";
+        $binds= [":id" => $vo->getIdEmpresa()];
 
         return $db->execute($query, $binds);
-    }
-
-    public function doLogin ($vo) {
-        $db = new Database();
-        $query = "SELECT * FROM usuarios 
-                WHERE login = :login AND senha = :senha";
-
-        $binds = [
-            ":login" => $vo->getLogin(),
-            ":senha" => md5($vo->getSenha()),
-        ];
-
-        $data  = $db->select($query, $binds);
-
-        if(count($data) == 0) {
-            return null;
-        }
-
-        $_SESSION['usuario'] = new UsuarioVO($data[0]['id'], $data[0]['login'], $data[0]['senha'], $data[0]['nivel']);
-
-        return $_SESSION['usuario'];
     }
 }

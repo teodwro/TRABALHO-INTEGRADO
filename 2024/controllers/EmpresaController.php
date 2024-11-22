@@ -33,12 +33,12 @@ final class EmpresaController extends Controller {
     }
 
     public function save() {
-        $id = $_POST["id"];
+        $id_empresa = $_POST["id_empresa"];
 
         $vo = new EmpresaVO($id_empresa, $_POST["nome_empresa"],$_POST["endereco_empresa"],$_POST["telefone_empresa"],$_POST["email_empresa"],$_POST["cnpj_empresa"],$_POST["representante_empresa"],    );
         $model = new EmpresaModel();
 
-        if(empty($id)) {
+        if(empty($id_empresa)) {
             $result = $model->insert($vo);
         } else {
             $result = $model->update($vo);

@@ -19,17 +19,21 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
+            <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
             <th>Ações</th>
+            <?php } ?>
         </tr>
         <?php foreach($cidades as $cidade) { ?>
             <tr>
                 <td><?php echo $cidade->getId(); ?></td>
                 <td><?php echo $cidade->getNome(); ?></td>
+                <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
                 <td>
                     <a href="cidade.php?id=<?php echo $cidade->getId(); ?>">Editar</a>
                     <br>
                     <a href="excluirCidade.php?id=<?php echo $cidade->getId(); ?>">Excluir</a>
                 </td>
+                <?php } ?>
             </tr>
         <?php } ?>
     </table>

@@ -4,7 +4,6 @@ namespace Model\VO;
 
 final class EmpresaVO extends VO {
 
-    private $id_empresa;
     private $nome_empresa;
     private $endereco_empresa;
     private $telefone_empresa;
@@ -12,22 +11,14 @@ final class EmpresaVO extends VO {
     private $cnpj_empresa;
     private $representante_empresa;
 
-    public function __construct($id_empresa = 0, $nome_empresa = "", $endereco_empresa = "", $telefone_empresa = "", $email_empresa = "", $cnpj_empresa = "", $representante_empresa = "") {
-        parent::__construct($id_empresa);
+    public function __construct($id = 0, $nome_empresa = "", $endereco_empresa = "", $telefone_empresa = "", $email_empresa = "", $cnpj_empresa = "", $representante_empresa = "") {
+        parent::__construct($id);
         $this->nome_empresa = $nome_empresa;
         $this->endereco_empresa = $endereco_empresa;
         $this->telefone_empresa = $telefone_empresa;
         $this->email_empresa = $email_empresa;
         $this->cnpj_empresa = $cnpj_empresa;
         $this->representante_empresa = $representante_empresa;
-    }
-
-    public function getIdEmpresa() {
-        return $this->id_empresa;
-    }
-
-    public function setIdEmpresa($id_empresa) {
-        $this->id_empresa = $id_empresa;
     }
 
     public function getNomeEmpresa() {

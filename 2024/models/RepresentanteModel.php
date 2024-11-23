@@ -60,7 +60,7 @@ final class RepresentanteModel extends Model {
             ":cpf_representante" => $vo->getCpfRepresentante(),
             ":rg_representante" => $vo->getRgRepresentante(),
             ":email_representante" => $vo->getEmailRepresentante(),
-            ":id" => $vo->getIdRepresentante(),
+            ":id" => $vo->getId(),
         ];
 
         return $db->execute($query, $binds);
@@ -69,7 +69,7 @@ final class RepresentanteModel extends Model {
     public function delete($vo) {
         $db = new Database();
         $query = "DELETE FROM representantes WHERE id_representante = :id_representante";
-        $binds = [":id_representante" => $vo->getIdRepresentante()];
+        $binds = [":id_representante" => $vo->getId()];
 
         return $db->execute($query, $binds);
     }

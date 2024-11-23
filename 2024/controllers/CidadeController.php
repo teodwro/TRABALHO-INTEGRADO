@@ -39,9 +39,13 @@ final class CidadeController extends Controller {
     }
 
     public function save() {
-        $id = $_POST["id"];
 
-        $nomeArquivo = $this->uploadFile($_FILES["foto"]);
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("cidades.php");
+            exit;
+        }
+
+        $id = $_POST["id"];
 
         $vo = new CidadeVO($id, $_POST["nome"]);
         $model = new CidadeModel();
@@ -56,6 +60,12 @@ final class CidadeController extends Controller {
     }
 
     public function remove() {
+        
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("cidades.php");
+            exit;
+        }
+
         $vo = new CidadeVO($_GET["id"]);
         $model = new CidadeModel();
 

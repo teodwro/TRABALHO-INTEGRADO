@@ -10,13 +10,18 @@ final class RepresentanteController extends Controller {
     public function list() {
         $model = new RepresentanteModel();
         $data = $model->selectAll(new RepresentanteVO());
-
         $this->loadView("listaRepresentantes", [
             "representantes" => $data
         ]);
     }
 
     public function form() {
+
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("representantes.php");
+            exit;
+        }
+
         $id = $_GET["id"] ?? 0;
 
         if(!empty($id)) {
@@ -33,6 +38,12 @@ final class RepresentanteController extends Controller {
     }
 
     public function save() {
+
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("representantes.php");
+            exit;
+        }
+
         $id_representante = $_POST["id_representante"];
 
         $vo = new RepresentanteVO($id_representante, $_POST["nome_representante"],$_POST["funcao_representante"], $_POST["cpf_representante"], $_POST["rg_representante"], $_POST["email_representante"]);
@@ -48,11 +59,17 @@ final class RepresentanteController extends Controller {
     }
 
     public function remove() {
+
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("representantes.php");
+            exit;
+        }
+        
         $vo = new RepresentanteVO($_GET["id_representante"]);
         $model = new RepresentanteModel();
 
         $result = $model->delete($vo);
-
+    
         $this->redirect("representantes.php");
     }
 

@@ -19,6 +19,12 @@ final class EstudanteController extends Controller {
     }
 
     public function form() {
+
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("estudantes.php");
+            exit;
+        }
+
         $id = $_GET["id"] ?? 0;
 
         if(!empty($id)) {
@@ -39,9 +45,13 @@ final class EstudanteController extends Controller {
     }
 
     public function save() {
-        $id = $_POST["id"];
 
-        print_r($_POST);
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("estudantes.php");
+            exit;
+        }
+
+        $id = $_POST["id"];
 
         $vo = new EstudanteVO($id, $_POST["nome_estudante"],$_POST["cpf"],$_POST["rg"],$_POST["email"],$_POST["endereco"],$_POST["cidade_id"],$_POST["telefone"], $_POST["matricula"],);
         $model = new EstudanteModel();
@@ -56,6 +66,12 @@ final class EstudanteController extends Controller {
     }
 
     public function remove() {
+
+        if($_SESSION["usuario"]->getNivel() == 1) {
+            $this->redirect("estudantes.php");
+            exit;
+        }
+
         $vo = new EstudanteVO($_GET["id"]);
         $model = new EstudanteModel();
 

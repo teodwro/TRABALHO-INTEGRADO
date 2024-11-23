@@ -13,12 +13,12 @@
     <a href="usuario.php">Inserir novo</a>
 
     <table>
-        <tr>
-            <td>ID</td>
-            <td>Login</td>
-            <td>Nível</td>
-            <td>Ações</td>
-        </tr>
+        <thead>
+            <th>ID</th>
+            <th>Login</th>
+            <th>Nível</th>
+            <th>Ações</th>
+        </thead>
         <?php foreach ($usuarios as $usuario) : ?>
             
             <tr>

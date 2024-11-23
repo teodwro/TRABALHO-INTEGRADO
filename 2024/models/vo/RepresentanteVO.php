@@ -20,14 +20,6 @@ final class RepresentanteVO extends VO {
         $this->email_representante = $email_representante;
     }
 
-    public function getIdRepresentante() {
-        return $this->id_representante;
-    }
-
-    public function setIdRepresentante($id_representante) {
-        $this->id_representante = $id_representante;
-    }
-
     public function getNomeRepresentante() {
         return $this->nome_representante;
     }

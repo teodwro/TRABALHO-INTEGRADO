@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Nov-2024 às 14:39
+-- Tempo de geração: 26-Nov-2024 às 12:57
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -24,23 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `areas_estagio`
---
-
-CREATE TABLE `areas_estagio` (
-  `id_area_estagio` int(11) NOT NULL,
-  `descricao_area_estagio` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `cidades`
 --
 
 CREATE TABLE `cidades` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `cidades`
+--
+
+INSERT INTO `cidades` (`id`, `nome`) VALUES
+(2, 'Bg td2');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cursos`
+--
+
+CREATE TABLE `cursos` (
+  `id_curso` int(11) NOT NULL,
+  `nome_curso` varchar(255) NOT NULL,
+  `professor_curso` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -59,6 +67,13 @@ CREATE TABLE `empresas` (
   `representante_empresa` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `empresas`
+--
+
+INSERT INTO `empresas` (`id_empresa`, `nome_empresa`, `endereco_empresa`, `telefone_empresa`, `email_empresa`, `cnpj_empresa`, `representante_empresa`) VALUES
+(8, 'Nome', 'end', '123123', 'w@g', '1901290', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -69,15 +84,19 @@ CREATE TABLE `estagios` (
   `id_estagio` int(11) NOT NULL,
   `id_processo_estagio` int(11) DEFAULT NULL,
   `id_estudante` int(11) DEFAULT NULL,
-  `id_area_estagio` int(11) DEFAULT NULL,
+  `id_curso_estagio` int(11) NOT NULL,
   `id_professor_orientador` int(11) DEFAULT NULL,
   `id_professor_coorientador` int(11) DEFAULT NULL,
   `id_supervisor_empresa` int(11) DEFAULT NULL,
   `email_estudante` varchar(255) DEFAULT NULL,
   `endereco_estudante` varchar(255) DEFAULT NULL,
   `telefone_estudante` varchar(20) DEFAULT NULL,
-  `cidade_estudante` int(11) DEFAULT NULL,
-  `encaminhamentos_secoes_estagio` text DEFAULT NULL
+  `encaminhamentos_secoes_estagio` text DEFAULT NULL,
+  `plano_atividades` varchar(255) DEFAULT NULL,
+  `relatorio_final` varchar(255) DEFAULT NULL,
+  `ficha_autoavaliacao` varchar(255) DEFAULT NULL,
+  `ficha_avaliacao_empresa` varchar(255) DEFAULT NULL,
+  `termo_compromisso` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -142,6 +161,21 @@ CREATE TABLE `representantes` (
   `email_representante` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `representantes`
+--
+
+INSERT INTO `representantes` (`id_representante`, `nome_representante`, `funcao_representante`, `cpf_representante`, `rg_representante`, `email_representante`) VALUES
+(1, 'nn', 'sex', '123', '123', 'a@g'),
+(2, 'nn', 'xesman uel bel', '123', '123', 'a@g'),
+(3, 'a', 'a', '1', '123', 'a@g'),
+(4, 'nn', 'xesman uel bel', '123', '123', 'a@g'),
+(5, 'e', 'eeee', 'rrrrr', '333', '5555555@2'),
+(6, 'nome', 'func', 'cpf', 'rg', '5555555@2'),
+(7, 'nome', 'func', 'cpf', 'rg', '5555555@2'),
+(8, 'asd', 'asd', 'asd', 'asd', 'asd@asd'),
+(9, 'nn', 'xesman uel bel', '123', '123', 'a@g');
+
 -- --------------------------------------------------------
 
 --
@@ -168,16 +202,16 @@ INSERT INTO `usuarios` (`id`, `login`, `senha`, `nivel`) VALUES
 --
 
 --
--- Índices para tabela `areas_estagio`
---
-ALTER TABLE `areas_estagio`
-  ADD PRIMARY KEY (`id_area_estagio`);
-
---
 -- Índices para tabela `cidades`
 --
 ALTER TABLE `cidades`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `cursos`
+--
+ALTER TABLE `cursos`
+  ADD PRIMARY KEY (`id_curso`);
 
 --
 -- Índices para tabela `empresas`
@@ -193,11 +227,10 @@ ALTER TABLE `estagios`
   ADD PRIMARY KEY (`id_estagio`),
   ADD KEY `id_processo_estagio` (`id_processo_estagio`),
   ADD KEY `id_estudante` (`id_estudante`),
-  ADD KEY `id_area_estagio` (`id_area_estagio`),
+  ADD KEY `id_area_estagio` (`id_curso_estagio`),
   ADD KEY `id_professor_orientador` (`id_professor_orientador`),
   ADD KEY `id_professor_coorientador` (`id_professor_coorientador`),
-  ADD KEY `id_supervisor_empresa` (`id_supervisor_empresa`),
-  ADD KEY `cidade_estudante` (`cidade_estudante`);
+  ADD KEY `id_supervisor_empresa` (`id_supervisor_empresa`);
 
 --
 -- Índices para tabela `estudantes`
@@ -240,22 +273,16 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de tabela `areas_estagio`
---
-ALTER TABLE `areas_estagio`
-  MODIFY `id_area_estagio` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `estagios`
@@ -267,7 +294,7 @@ ALTER TABLE `estagios`
 -- AUTO_INCREMENT de tabela `estudantes`
 --
 ALTER TABLE `estudantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `processos_estagio`
@@ -285,7 +312,7 @@ ALTER TABLE `professores`
 -- AUTO_INCREMENT de tabela `representantes`
 --
 ALTER TABLE `representantes`
-  MODIFY `id_representante` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_representante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
@@ -309,11 +336,10 @@ ALTER TABLE `empresas`
 ALTER TABLE `estagios`
   ADD CONSTRAINT `estagios_ibfk_1` FOREIGN KEY (`id_processo_estagio`) REFERENCES `processos_estagio` (`id_processo_estagio`),
   ADD CONSTRAINT `estagios_ibfk_2` FOREIGN KEY (`id_estudante`) REFERENCES `estudantes` (`id`),
-  ADD CONSTRAINT `estagios_ibfk_3` FOREIGN KEY (`id_area_estagio`) REFERENCES `areas_estagio` (`id_area_estagio`),
+  ADD CONSTRAINT `estagios_ibfk_3` FOREIGN KEY (`id_curso_estagio`) REFERENCES `cursos` (`id_curso`),
   ADD CONSTRAINT `estagios_ibfk_4` FOREIGN KEY (`id_professor_orientador`) REFERENCES `professores` (`id_professor`),
   ADD CONSTRAINT `estagios_ibfk_5` FOREIGN KEY (`id_professor_coorientador`) REFERENCES `professores` (`id_professor`),
-  ADD CONSTRAINT `estagios_ibfk_6` FOREIGN KEY (`id_supervisor_empresa`) REFERENCES `representantes` (`id_representante`),
-  ADD CONSTRAINT `estagios_ibfk_7` FOREIGN KEY (`cidade_estudante`) REFERENCES `cidades` (`id`);
+  ADD CONSTRAINT `estagios_ibfk_6` FOREIGN KEY (`id_supervisor_empresa`) REFERENCES `representantes` (`id_representante`);
 
 --
 -- Limitadores para a tabela `estudantes`

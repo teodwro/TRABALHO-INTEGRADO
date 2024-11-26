@@ -10,7 +10,7 @@
     <?php include("includes/menu.php"); ?>
 
     <h1>Sistema de Estágio - Representante</h1>
-    <a href="empresas.php">Voltar</a>
+    <a href="representantes.php">Voltar</a>
     <form action="salvarRepresentante.php" method="POST">
         <input type="hidden" name="id_representante" value="<?php echo $representante->getId(); ?>">
         <input type="text" name="nome_representante" value="<?php echo $representante->getNomeRepresentante(); ?>" placeholder="Nome do Representante:" required> <br>

@@ -77,7 +77,7 @@ final class EstudanteController extends Controller {
 
         $result = $model->delete($vo);
 
-        $this->redirect("cidades.php");
+        $this->redirect("estudantes.php");
     }
 
 }

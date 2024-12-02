@@ -44,32 +44,33 @@ final class UsuarioModel extends Model {
 
         return $db->execute($query, $binds);
     }
-    public function update ($vo) {
-        $db = new Database();
-        if(empty($vo->getSenha())){
-            $query = "UPDATE usuarios SET login = :login, nivel = :nivel
-            WHERE id = :id";
-            
-            $binds = [
-                ":login" => $vo->getLogin(),
-                ":nivel" => $vo->getNivel(),
-                ":id" => $vo->getId()
-            ];
-        } else {
-            
-            $query = "UPDATE usuarios SET login = :login, 
-                        senha = :senha, nivel = :nivel, 
-                        WHERE id = :id";
-            $binds = [
-                ":login" => $vo->getLogin(),
-                ":nivel" => $vo->getNivel(),
-                ":senha" => md5($vo->getSenha()),
-                ":id" => $vo->getId()
-            ];
-        }
 
-        return $db->execute($query, $binds);
+    public function update($vo) {
+    $db = new Database();
+    if (empty($vo->getSenha())) {
+        $query = "UPDATE usuarios SET login = :login, nivel = :nivel
+                  WHERE id = :id";
+        $binds = [
+            ":login" => $vo->getLogin(),
+            ":nivel" => $vo->getNivel(),
+            ":id" => $vo->getId()
+        ];
+    } else {
+        $query = "UPDATE usuarios SET login = :login, 
+                  senha = :senha, nivel = :nivel 
+                  WHERE id = :id"; // Removida a vírgula extra
+        $binds = [
+            ":login" => $vo->getLogin(),
+            ":senha" => md5($vo->getSenha()),
+            ":nivel" => $vo->getNivel(),
+            ":id" => $vo->getId()
+        ];
     }
+
+    return $db->execute($query, $binds);
+}
+
+
     public function delete ($vo) {
         $db = new Database();
         $query = "DELETE FROM usuarios WHERE id = :id";

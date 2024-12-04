@@ -8,7 +8,12 @@ final class CursoModel extends Model {
 
     public function selectAll($vo) {
         $db = new Database();
-        $query = "SELECT * FROM cursos";
+        $query = "SELECT 
+        c.id_curso,
+        c.nome_curso,
+        p.nome_professor        
+        FROM cursos c
+        JOIN professores p ON c.professor_curso = p.id_professor";
         $data = $db->select($query);
 
         $arrayDados = [];

@@ -22,6 +22,9 @@
         <a href="professores.php">Professores</a>
     </li>
     <li>
+        <a href="cursos.php">Cursos</a>
+    </li>
+    <li>
         <a href="logout.php">Sair</a>
     </li>
     

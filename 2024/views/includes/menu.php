@@ -5,6 +5,7 @@
     <li>
         <a href="cidades.php">Cidades</a>
     </li>
+    
     <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
     <li>
         <a href="usuarios.php">Usuários</a>

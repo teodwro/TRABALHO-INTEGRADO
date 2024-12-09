@@ -28,7 +28,7 @@
             <tr>
                 <td><?php echo $curso->getId(); ?></td>
                 <td><?php echo $curso->getNomeCurso(); ?></td>
-                <td><?php echo $curso>getProfessorCurso() ?></td>
+                <td><?php echo $curso->getProfessorCurso(); ?></td>
                 <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
                 <td>
                     <a href="curso.php?id=<?php echo $curso->getId(); ?>">Editar</a>

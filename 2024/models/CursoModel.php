@@ -11,7 +11,7 @@ final class CursoModel extends Model {
         $query = "SELECT 
         c.id_curso,
         c.nome_curso,
-        p.nome_professor        
+        p.nome_professor as professor_curso     
         FROM cursos c
         JOIN professores p ON c.professor_curso = p.id_professor";
         $data = $db->select($query);
@@ -50,19 +50,19 @@ final class CursoModel extends Model {
     public function update($vo) {
         $db = new Database();
 
-        $query = "UPDATE cursos SET nome_curso = :nome_curso, professor_curso WHERE id = :id";
+        $query = "UPDATE cursos SET nome_curso = :nome_curso, professor_curso = :professor_curso WHERE id_curso = :id";
         $binds = [
             ":nome_curso" => $vo->getNomeCurso(),
+            ":professor_curso" => $vo->getProfessorCurso(),
             ":id" => $vo->getId(),
-        ];
-       
+        ];               
 
         return $db->execute($query, $binds);
     }
 
     public function delete($vo) {
         $db = new Database();
-        $query = "DELETE FROM cursos WHERE id = :id";
+        $query = "DELETE FROM cursos WHERE id_curso = :id";
         $binds = [":id" => $vo->getId()];
 
         return $db->execute($query, $binds);

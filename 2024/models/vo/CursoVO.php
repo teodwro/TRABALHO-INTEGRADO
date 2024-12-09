@@ -22,8 +22,9 @@ final class CursoVO extends VO {
     }
  
     public function getProfessorCurso() {
-        return $this->nome_curso;
+        return $this->professor_curso;
     }
+    
 
     public function setProfessorCurso($professor_curso) {
         $this->professor_curso = $professor_curso;

@@ -1,0 +1,259 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8; /* Fundo claro */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Títulos */
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: #0056b3; /* Azul escuro */
+    margin-bottom: 20px;
+}
+
+/* Links e navegação */
+a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Botões */
+button, .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+button:hover, .btn:hover {
+    background-color: #004494;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+    color: #333;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+form input:focus, form select:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #ffffff;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #0056b3;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo do Header */
+.main-header {
+    background-color: #0056b3; /* Cor principal (azul escuro) */
+    color: #ffffff;
+    padding: 10px 0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.main-header .nav-bar ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+}
+
+.main-header .nav-bar ul li {
+    margin: 0;
+}
+
+
+
+.main-header .nav-bar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.main-header .nav-bar ul li a:hover {
+    background-color: #004494; /* Tom mais escuro no hover */
+}
+
+/* Menu lateral */
+.side-menu {
+    width: 250px;
+    height: 100vh; /* Altura total da tela */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0056b3; /* Azul escuro */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0); /* Inicialmente visível */
+    z-index: 1000;
+}
+
+.side-menu.active {
+    transform: translateX(-100%); /* Oculta o menu ao clicar no botão */
+}
+
+header{
+    background-color: #004494;
+    width: 100%;
+}
+
+.menu-header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.menu-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.menu-nav ul li a:hover {
+    background-color: #004494; /* Cor ao passar o mouse */
+}
+
+/* Conteúdo principal */
+.main-content {
+    margin-left: 250px; /* Espaço reservado para o menu lateral */
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh; /* Garante que o fundo cobre toda a altura */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .side-menu {
+        transform: translateX(-100%); /* Menu oculto por padrão em telas pequenas */
+    }
+
+    .side-menu.active {
+        transform: translateX(0); /* Mostra o menu ao clicar no botão */
+    }
+
+    .main-content {
+        margin-left: 0; /* Sem margem quando o menu estiver oculto */
+    }
+}
+
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    table th, table td {
+        font-size: 0.9rem;
+    }
+}

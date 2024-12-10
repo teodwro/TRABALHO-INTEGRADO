@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Estágio</title>
+    <title>Sistema de Estágio - Adicionar Usuários</title>
 </head>
 <body>
 
     <?php include("includes/menu.php"); ?>
 
-    <h1>Sistema de Estágio - Usuários</h1>
-    <a href="usuarios.php">Voltar</a>
-    <form action="salvarUsuario.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $usuario->getId(); ?>">
-        <input type="text" name="login" value="<?php echo $usuario->getLogin(); ?>" placeholder="LOGIN:">
-        <br>
-        <input type="password" name="senha" placeholder="Senha:">
-        <br>
-        <?php
-            if(!empty($usuario->getId())){
-        ?>
-        <span>Para deixar a senha atual, basta deixar o campo em branco!</span>
-        <?php
-            }
-        ?>
-        <br>
+    <h1>Usuários</h1>
+    <a href="usuarios.php" aria-label="Voltar para a lista de usuários">Voltar</a>
 
-        <select name="nivel">
+    <form action="salvarUsuario.php" method="POST" aria-labelledby="form-titulo">
+        <input type="hidden" name="id" value="<?php echo $usuario->getId(); ?>">
+
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login" value="<?php echo $usuario->getLogin(); ?>" placeholder="Digite o login" required>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" placeholder="Digite a senha" <?php echo !empty($usuario->getId()) ? '' : 'required'; ?>>
+
+        <?php if (!empty($usuario->getId())): ?>
+            <small>Para deixar a senha atual, basta deixar o campo em branco!</small>
+        <?php endif; ?>
+
+        <label for="nivel">Nível de Acesso:</label>
+        <select name="nivel" id="nivel" required>
             <option value="1" <?php echo ($usuario->getNivel() == 1) ? 'selected' : ''; ?>>
                 Nível 1 (Para professores) (Apenas Visualização)
             </option>
@@ -34,10 +34,9 @@
                 Nível 2 (Alterar Dados)
             </option>
         </select>
-        <br>
 
-        <button type="submit">Salvar</button>
+        <button type="submit" aria-label="Salvar usuário">Salvar</button>
     </form>
-    
+
 </body>
 </html>

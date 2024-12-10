@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Estágio</title>
+    <title>Sistema de Estágio - Estudantes</title>
 </head>
 
 <body>
 
-    <?php include("includes/menu.php"); ?>
+<?php include("includes/menu.php"); ?>
 
-    <h1>Sistema de Estágio - Estudantes</h1>
-    
-    <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
-    <a href="estudante.php">Incluir novo</a>
-    <?php } ?>
+<h1>Estudantes</h1>
 
-    <table>
+<?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
+<a href="estudante.php">Incluir novo</a>
+<?php } ?>
+
+<table>
+    <thead>
         <tr>
             <th>ID</th>
             <th>Nome</th>
@@ -31,6 +32,8 @@
             <th>Ações</th>
             <?php } ?>
         </tr>
+    </thead>
+    <tbody>
         <?php foreach ($estudantes as $estudante) { ?>
             <tr>
                 <td><?php echo $estudante->getId(); ?></td>
@@ -51,7 +54,8 @@
                 <?php } ?>
             </tr>
         <?php } ?>
-    </table>
+    </tbody>
+</table>
 </body>
 
 </html>

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Estágio</title>
+    <title>Sistema de Estágio - Cidades</title>
 </head>
 <body>
 
     <?php include("includes/menu.php"); ?>
 
-    <h1>Sistema de Estágio - Cidades</h1>
+    <h1>Cidades</h1>
     
     <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
         <a href="cidade.php">Incluir nova</a>

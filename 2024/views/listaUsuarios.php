@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Acadêmico - Usuário</title>
+    <title>Sistema de Estágio - Usuário</title>
 </head>
 <body>
 
     <?php include("includes/menu.php"); ?>
 
-    <h1>Sistema Acadêmico - Usuário</h1>
+    <h1>Usuários</h1>
     <a href="usuario.php">Inserir novo</a>
 
     <table>

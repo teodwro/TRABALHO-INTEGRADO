@@ -10,7 +10,7 @@
 
     <?php include("includes/menu.php"); ?>
 
-    <h1>Sistema de Estágio - Representantes</h1>
+    <h1>Representantes</h1>
     
     <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
     <a href="representante.php">Incluir novo</a>

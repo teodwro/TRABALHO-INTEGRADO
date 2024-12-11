@@ -23,6 +23,7 @@
                 <li><a href="estagios.php">Estágios</a></li>
                 <li><a href="cursos.php">Cursos</a></li>
                 <li><a href="representantes.php">Representantes</a></li>
+                <li><a href="logout.php">Deslogar</a></li>
             </ul>
         </nav>
     </aside>

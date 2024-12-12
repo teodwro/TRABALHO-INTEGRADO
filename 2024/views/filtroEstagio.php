@@ -1,4 +1,4 @@
-<form method="POST" action="">
+<form method="POST" action="filtrarEstagio.php">
     <h2>Filtrar Estágios</h2>
     
     <label for="curso_estagio">Curso:</label>

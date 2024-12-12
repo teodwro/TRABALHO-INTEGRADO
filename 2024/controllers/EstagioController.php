@@ -17,6 +17,30 @@ use Model\VO\CidadeVO;
 
 final class EstagioController extends Controller {
 
+    public function filtrarEstagios() {
+        $filtro_curso = isset($_POST['filtro_curso']) ? $_POST['filtro_curso'] : null;
+        $filtro_data = isset($_POST['filtro_data']) ? $_POST['filtro_data'] : null;
+        $filtro_estudante = isset($_POST['filtro_estudante']) ? $_POST['filtro_estudante'] : null;
+        $filtro_empresa = isset($_POST['filtro_empresa']) ? $_POST['filtro_empresa'] : null;
+        $filtro_professor = isset($_POST['filtro_professor']) ? $_POST['filtro_professor'] : null;
+        $filtro_cidade = isset($_POST['filtro_cidade']) ? $_POST['filtro_cidade'] : null;
+    
+        $estagioModel = new EstagioModel();
+        $estagios = $estagioModel->filtrarEstagios(
+            $filtro_curso,
+            $filtro_data,
+            $filtro_estudante,
+            $filtro_empresa,
+            $filtro_professor,
+            $filtro_cidade
+        );
+
+        $data = ['estagios' => $estagios];
+        $this->loadView("estagiosFiltrados", [
+            "estagios" => $data,
+        ]);
+    }
+
     public function filtroEstagio() {
         $model_curso = new CursoModel();
         $data_curso = $model_curso->selectAll(new CursoVO());

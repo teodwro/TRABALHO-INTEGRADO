@@ -7,56 +7,48 @@ use Model\Database;
 
 final class EstagioModel extends Model {
 
-    public function filterEstagios($filters) {
-        $db = new Database();
-
-        $query = "SELECT 
-                    e.id_estagio,
-                    e.nome_estudante,
-                    e.nome_empresa,
-                    e.nome_professor_orientador,
-                    e.data_inicio,
-                    e.data_fim,
-                    e.cidade
-                  FROM estagios e
-                  WHERE 1=1";
-
-        $binds = [];
-
-        if ($filters['curso_id']) {
-            $query .= " AND e.curso_id = :curso_id";
-            $binds[':curso_id'] = $filters['curso_id'];
+    public function filtrarEstagios($curso_id, $filtro_data, $estudante_nome, $empresa_id, $professor_id, $cidade_id) {
+        $db = new Database(); 
+        
+        $query = "
+            SELECT e.*, es.nome_estudante, c.nome_curso, p.nome_professor AS orientador_nome
+            FROM estagios e
+            JOIN estudantes es ON e.id_estudante = es.id
+            JOIN cursos c ON e.id_curso_estagio = c.id_curso
+            JOIN professores p ON e.id_professor_orientador = p.id_professor
+            WHERE 1=1
+        ";
+        
+        $params = [];
+        
+        if ($curso_id) {
+            $query .= " AND e.id_curso_estagio = :curso_id";
+            $params[':curso_id'] = $curso_id;
         }
-        if ($filters['data_inicio']) {
-            $query .= " AND e.data_inicio >= :data_inicio";
-            $binds[':data_inicio'] = $filters['data_inicio'];
+        if ($filtro_data) {
+            $query .= " AND :filtro_data BETWEEN periodo_estagio_inicio AND periodo_estagio_fim";
+            $params[':filtro_data'] = $filtro_data;
         }
-        if ($filters['data_fim']) {
-            $query .= " AND e.data_fim <= :data_fim";
-            $binds[':data_fim'] = $filters['data_fim'];
+        if ($estudante_nome) {
+            $query .= " AND es.nome_estudante LIKE :estudante_nome";
+            $params[':estudante_nome'] = "%" . $estudante_nome . "%";
         }
-        if ($filters['nome_estudante']) {
-            $query .= " AND e.nome_estudante LIKE :nome_estudante";
-            $binds[':nome_estudante'] = "%" . $filters['nome_estudante'] . "%";
+        if ($empresa_id) {
+            $query .= " AND e.id_empresa_estagio = :empresa_id";
+            $params[':empresa_id'] = $empresa_id;
         }
-        if ($filters['nome_empresa']) {
-            $query .= " AND e.nome_empresa LIKE :nome_empresa";
-            $binds[':nome_empresa'] = "%" . $filters['nome_empresa'] . "%";
+        if ($professor_id) {
+            $query .= " AND p.id_professor = :professor_id";
+            $params[':professor_id'] = $professor_id;
         }
-        if ($filters['nome_professor_orientador']) {
-            $query .= " AND e.nome_professor_orientador LIKE :nome_professor_orientador";
-            $binds[':nome_professor_orientador'] = "%" . $filters['nome_professor_orientador'] . "%";
+        if ($cidade_id) {
+            $query .= " AND es.cidade_id = :cidade_id";
+            $params[':cidade_id'] = $cidade_id;
         }
-        if ($filters['cidade']) {
-            $query .= " AND e.cidade LIKE :cidade";
-            $binds[':cidade'] = "%" . $filters['cidade'] . "%";
-        }
-
-        // Executa a consulta
-        $data = $db->select($query, $binds);
-
-        return $data;
+        
+        return $db->select($query, $params); 
     }
+    
 
     public function selectAll($vo)
     {

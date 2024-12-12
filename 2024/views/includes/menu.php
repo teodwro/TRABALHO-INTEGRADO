@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Sistema de Estágio</title>
 </head>
 <body>
     <header>
@@ -19,7 +13,7 @@
             <ul>
                 <li><a href="estudantes.php">Estudante</a></li>
                 <li><a href="cidades.php">Cidades</a></li>
-                <li><?php if ($_SESSION["usuario"]->getNivel() == 2) { ?><a href="usuarios.php">Usuários</a><?php } ?></li>
+                <?php if ($_SESSION["usuario"]->getNivel() == 2) { ?><li><a href="usuarios.php">Usuários</a></li><?php } ?>
                 <li><a href="professores.php">Professores</a></li>
                 <li><a href="empresas.php">Empresas</a></li>
                 <li><a href="estagios.php">Estágios</a></li>
@@ -53,5 +47,3 @@
             });
         });
     </script>
-</body>
-</html>

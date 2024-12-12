@@ -4,40 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estágio - Cursos</title>
-</head>
-<body>
 
-    <?php include("includes/menu.php"); ?>
+<?php include("includes/menu.php"); ?>
 
-    <h1>Cursos</h1>
-    
-    <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
-        <a href="curso.php">Incluir nova</a>
-    <?php } ?>
-    
+<h1>Cursos</h1>
+
+<?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
+    <a href="curso.php">Incluir nova</a>
+<?php } ?>
+
+<div class="table-container">
     <table>
-        <tr>
-            <th>ID</th>
-            <th>Nome do Curso</th>
-            <th>Professor do Curso</th>
-            <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
-            <th>Ações</th>
-            <?php } ?>
-        </tr>
-        <?php foreach($cursos as $curso) { ?>
+        <thead>
             <tr>
-                <td><?php echo $curso->getId(); ?></td>
-                <td><?php echo $curso->getNomeCurso(); ?></td>
-                <td><?php echo $curso->getProfessorCurso(); ?></td>
+                <th>Nome do Curso</th>
+                <th>Professor do Curso</th>
                 <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
-                <td>
-                    <a href="curso.php?id=<?php echo $curso->getId(); ?>">Editar</a>
-                    <br>
-                    <a href="excluirCurso.php?id=<?php echo $curso->getId(); ?>">Excluir</a>
-                </td>
+                <th>Ações</th>
                 <?php } ?>
             </tr>
-        <?php } ?>
+        </thead>
+        <tbody>
+            <?php foreach($cursos as $curso) { ?>
+                <tr>
+                    <td><?php echo $curso->getNomeCurso(); ?></td>
+                    <td><?php echo $curso->getProfessorCurso(); ?></td>
+                    <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
+                    <td>
+                        <a href="curso.php?id=<?php echo $curso->getId(); ?>">Editar</a>
+                        <br>
+                        <a href="excluirCurso.php?id=<?php echo $curso->getId(); ?>">Excluir</a>
+                    </td>
+                    <?php } ?>
+                </tr>
+            <?php } ?>
+        </tbody>
     </table>
+</div>
 </body>
 </html>

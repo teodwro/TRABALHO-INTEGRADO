@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estágio - Adicionar Cidades</title>
-</head>
-<body>
-    <header>
-        <?php include("includes/menu.php"); ?>
-    </header>
+
+    <?php include("includes/menu.php"); ?>
 
     <main>
         <h1 id="titulo-principal">Gerenciar Cidades</h1>

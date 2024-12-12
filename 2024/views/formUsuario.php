@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estágio - Adicionar Usuários</title>
-</head>
-<body>
 
     <?php include("includes/menu.php"); ?>
 
@@ -27,6 +25,7 @@
 
         <label for="nivel">Nível de Acesso:</label>
         <select name="nivel" id="nivel" required>
+            <option value="0" disabled selected>Selecione uma opção</option>
             <option value="1" <?php echo ($usuario->getNivel() == 1) ? 'selected' : ''; ?>>
                 Nível 1 (Para professores) (Apenas Visualização)
             </option>

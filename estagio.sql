@@ -137,7 +137,7 @@ CREATE TABLE `estudantes` (
   `cidade_id` int(11) NOT NULL,
   `telefone` varchar(15) DEFAULT NULL,
   `matricula` varchar(20) NOT NULL,
-  `ano_letivo` varchar(50) DEFAULT NULL
+  `ano_letivo` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

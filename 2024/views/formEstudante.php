@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estágio - Adicionar Estudantes</title>
-</head>
-<body>
 
     <?php include("includes/menu.php"); ?>
 
@@ -36,6 +34,7 @@
 
         <label for="cidade_id">Cidade:</label>
         <select name="cidade_id" id="cidade_id" required>
+            <option value="0" disabled selected>Selecione uma opção</option>
            <?php foreach($cidades as $cidade){ ?>
                 <option value="<?php echo $cidade->getId() ?>"><?php echo $cidade->getNome() ?></option>    
             <?php } ?>

@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estágio - Adicionar Estágio</title>
-</head>
-<body>
 
     <?php include("includes/menu.php"); ?>
 
@@ -21,6 +19,7 @@
 
         <label for="estudante_estagio">Estudante:</label>
         <select name="estudante_estagio" id="estudante_estagio" required>
+            <option value="0" disabled selected>Selecione uma opção</option>
             <?php foreach ($estudantes as $estudante) { ?>
                 <option value="<?php echo $estudante->getId(); ?>"><?php echo $estudante->getNomeEstudante(); ?></option>    
             <?php } ?>
@@ -28,6 +27,7 @@
 
         <label for="curso_estagio">Curso:</label>
         <select name="curso_estagio" id="curso_estagio" required>
+        <option value="0" disabled selected>Selecione uma opção</option>
             <?php foreach ($cursos as $curso) { ?>
                 <option value="<?php echo $curso->getId(); ?>"><?php echo $curso->getNomeCurso(); ?></option>    
             <?php } ?>
@@ -35,6 +35,7 @@
         
         <label for="professor_orientador">Professor Orientador:</label>
         <select name="professor_orientador" id="professor_orientador" required>
+            <option value="0" disabled selected>Selecione uma opção</option>
             <?php foreach ($professores as $professor) { ?>
                 <option value="<?php echo $professor->getId(); ?>"><?php echo $professor->getNomeProfessor(); ?></option> 
             <?php } ?>   
@@ -42,6 +43,7 @@
 
         <label for="professor_coorientador">Professor Coorientador:</label>
         <select name="professor_coorientador" id="professor_coorientador">
+            <option value="0" disabled selected>Selecione uma opção</option>
             <?php foreach ($professores as $professor) { ?>
                 <option value="<?php echo $professor->getId(); ?>"><?php echo $professor->getNomeProfessor(); ?></option>    
             <?php } ?>
@@ -49,6 +51,7 @@
 
         <label for="empresa_estagio">Empresa:</label>
         <select name="empresa_estagio" id="empresa_estagio" required>
+            <option value="0" disabled selected>Selecione uma opção</option>
             <?php foreach ($empresas as $empresa) { ?>
                 <option value="<?php echo $empresa->getId(); ?>"><?php echo $empresa->getNomeEmpresa(); ?></option>    
             <?php } ?>

@@ -53,7 +53,7 @@ final class EstudanteController extends Controller {
 
         $id = $_POST["id"];
 
-        $vo = new EstudanteVO($id, $_POST["nome_estudante"],$_POST["cpf"],$_POST["rg"],$_POST["email"],$_POST["endereco"],$_POST["cidade_id"],$_POST["telefone"], $_POST["matricula"],);
+        $vo = new EstudanteVO($id, $_POST["nome_estudante"],$_POST["cpf"],$_POST["rg"],$_POST["email"],$_POST["endereco"],$_POST["cidade_id"],$_POST["telefone"], $_POST["matricula"], $_POST["ano_letivo"]);
         $model = new EstudanteModel();
 
         if(empty($id)) {

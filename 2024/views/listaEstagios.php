@@ -7,23 +7,15 @@
 
 <?php include("includes/menu.php"); ?>
 
-<<<<<<< Updated upstream
 <h1>Estágios</h1>
-
-<?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
-    <a href="estagio.php">Incluir novo</a>
-<?php } ?>
-
-<div class="table-container">
-=======
-    <h1>Estágios</h1>
     <a href="filtro.php">Filtrar Estágios</a>
     
     <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
         <a href="estagio.php">Incluir novo</a>
     <?php } ?>
+
+<div class="table-container">
     
->>>>>>> Stashed changes
     <table>
         <thead>
             <tr>

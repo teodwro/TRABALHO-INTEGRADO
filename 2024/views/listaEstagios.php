@@ -59,7 +59,7 @@
                 </tr>
 
                 <tr class="informacoes documentos-<?php echo $index; ?>" style="display: none;">
-                    <td colspan="10">
+                    <td colspan="11">
                         <div class="informacoes-box">
                             <h3>Documentos do Estágio:</h3>
                             <ul>
@@ -74,7 +74,7 @@
                 </tr>
 
                 <tr class="informacoes supervisor-<?php echo $index; ?>" style="display: none;">
-                    <td colspan="10">
+                    <td colspan="11">
                         <div class="informacoes-box">
                             <h3>Informações do Supervisor:</h3>
                             <ul>
@@ -88,7 +88,7 @@
                 </tr>
 
                 <tr class="informacoes estagio-<?php echo $index; ?>" style="display: none;">
-                    <td colspan="10">
+                    <td colspan="11">
                         <div class="informacoes-box">
                             <h3>Informações do Estágio:</h3>
                             <ul>

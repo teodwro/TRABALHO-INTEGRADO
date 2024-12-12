@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estágio - Estudantes</title>
-
 <?php include("includes/menu.php"); ?>
 
 <h1>Estudantes</h1>

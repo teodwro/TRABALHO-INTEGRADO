@@ -21,9 +21,6 @@
                 <li><a href="representantes.php">Representantes</a></li>
                 
             </ul>
-            <ul>
-                <li class="logout"></li>
-            </ul>
         </nav>
     </aside>
 

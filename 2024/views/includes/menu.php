@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -47,8 +43,4 @@
                 sideMenu.classList.toggle("active");
             });
         });
-<<<<<<< Updated upstream
     </script>
-=======
-    </script>
->>>>>>> Stashed changes

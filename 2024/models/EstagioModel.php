@@ -5,34 +5,44 @@ namespace Model;
 use Model\VO\EstagioVO;
 use Model\Database;
 
-final class EstagioModel extends Model {
-    public function selectAll($vo) {
+final class EstagioModel extends Model
+{
+    public function selectAll($vo)
+    {
         $db = new Database();
         $query = "SELECT 
-            estagios.id_estagio,
-            estudantes.nome_estudante,
-            cursos.nome_curso,
-            estagios.encaminhamentos_secoes_estagio,
-            estagios.plano_atividades,
-            estagios.relatorio_final,
-            estagios.ficha_autoavaliacao,
-            estagios.ficha_avaliacao_empresa,
-            estagios.termo_compromisso,
-            estagios.supervisor_empresa,
-            estagios.cargo_formacao_supervisor,
-            estagios.telefone_supervisor_empresa,
-            estagios.email_supervisor_empresa,
-            estagios.numero_convenio,
-            estagios.tipo_processo,
-            estagios.status_processo,
-            estagios.carga_horaria,
-            estagios.periodo_estagio_inicio,
-            estagios.periodo_estagio_fim
+        estagios.id_estagio,
+        estudantes.nome_estudante,
+        cursos.nome_curso,
+        professores_orientador.nome_professor AS professor_orientador,
+        professores_coorientador.nome_professor AS professor_coorientador,
+        empresas.nome_empresa AS empresa_estagio,
+        estagios.encaminhamentos_secoes_estagio,
+        estagios.plano_atividades,
+        estagios.relatorio_final,
+        estagios.ficha_autoavaliacao,
+        estagios.ficha_avaliacao_empresa,
+         estagios.termo_compromisso,
+        estagios.supervisor_empresa,
+        estagios.cargo_formacao_supervisor,
+        estagios.telefone_supervisor_empresa,
+        estagios.email_supervisor_empresa,
+        estagios.numero_convenio,
+        estagios.tipo_processo,
+        estagios.status_processo,
+        estagios.carga_horaria,
+        estagios.periodo_estagio_inicio,
+        estagios.periodo_estagio_fim
         FROM 
             estagios
-        LEFT JOIN estudantes ON estagios.id_estudante = estudantes.id
-        LEFT JOIN cursos ON estagios.id_curso_estagio = cursos.id_curso";
-        
+        JOIN estudantes ON estagios.id_estudante = estudantes.id
+        JOIN cursos ON estagios.id_curso_estagio = cursos.id_curso
+        JOIN empresas ON empresas.id_empresa = estagios.id_empresa_estagio
+        JOIN professores AS professores_orientador ON estagios.id_professor_orientador = professores_orientador.id_professor
+        JOIN professores AS professores_coorientador ON estagios.id_professor_coorientador = professores_coorientador.id_professor
+";
+
+
         $data = $db->select($query);
 
         $arrayList = [];
@@ -42,8 +52,9 @@ final class EstagioModel extends Model {
                 $row['id_estagio'],
                 $row['nome_estudante'],
                 $row['nome_curso'],
-                $row['nome_orientador'],
-                $row['nome_coorientador'],
+                $row['professor_orientador'],
+                $row['professor_coorientador'],
+                $row['empresa_estagio'],
                 $row['encaminhamentos_secoes_estagio'],
                 $row['plano_atividades'],
                 $row['relatorio_final'],
@@ -67,15 +78,16 @@ final class EstagioModel extends Model {
         return $arrayList;
     }
 
-    public function selectOne($vo) {
+    public function selectOne($vo)
+    {
         $db = new Database();
         $query = "SELECT 
             id_estagio,
             id_estudante,
-            nome_estudante,
             id_curso_estagio,
             id_professor_orientador,
             id_professor_coorientador,
+            id_empresa_estagio,
             encaminhamentos_secoes_estagio,
             plano_atividades,
             relatorio_final,
@@ -92,19 +104,19 @@ final class EstagioModel extends Model {
             carga_horaria,
             periodo_estagio_inicio,
             periodo_estagio_fim
-        FROM estagio
+        FROM estagios
         WHERE id_estagio = :id";
-        $binds = [':id' => $vo->getIdEstagio()];
+        $binds = [':id' => $vo->getId()];
 
         $data = $db->select($query, $binds);
 
         return new EstagioVO(
             $data[0]['id_estagio'],
             $data[0]['id_estudante'],
-            $data[0]['nome_estudante'],
             $data[0]['id_curso_estagio'],
             $data[0]['id_professor_orientador'],
             $data[0]['id_professor_coorientador'],
+            $data[0]['id_empresa_estagio'],
             $data[0]['encaminhamentos_secoes_estagio'],
             $data[0]['plano_atividades'],
             $data[0]['relatorio_final'],
@@ -124,13 +136,15 @@ final class EstagioModel extends Model {
         );
     }
 
-    public function insert($vo) {
+    public function insert($vo)
+    {
         $db = new Database();
-        $query = "INSERT INTO estagio (
+        $query = "INSERT INTO estagios (
             id_estudante,
             id_curso_estagio,
             id_professor_orientador,
             id_professor_coorientador,
+            id_empresa_estagio,
             encaminhamentos_secoes_estagio,
             plano_atividades,
             relatorio_final,
@@ -152,6 +166,7 @@ final class EstagioModel extends Model {
             :id_curso_estagio,
             :id_professor_orientador,
             :id_professor_coorientador,
+            :id_empresa_estagio,
             :encaminhamentos_secoes_estagio,
             :plano_atividades,
             :relatorio_final,
@@ -170,10 +185,11 @@ final class EstagioModel extends Model {
             :periodo_estagio_fim
         )";
         $binds = [
-            ":id_estudante" => $vo->getIdEstudante(),
-            ":id_curso_estagio" => $vo->getIdCursoEstagio(),
-            ":id_professor_orientador" => $vo->getIdProfessorOrientador(),
-            ":id_professor_coorientador" => $vo->getIdProfessorCoorientador(),
+            ":id_estudante" => $vo->getEstudanteEstagio(),
+            ":id_curso_estagio" => $vo->getCursoEstagio(),
+            ":id_professor_orientador" => $vo->getProfessorOrientador(),
+            ":id_professor_coorientador" => $vo->getProfessorCoorientador(),
+            ":id_empresa_estagio" => $vo->getEmpresaEstagio(),
             ":encaminhamentos_secoes_estagio" => $vo->getEncaminhamentosSecoesEstagio(),
             ":plano_atividades" => $vo->getPlanoAtividades(),
             ":relatorio_final" => $vo->getRelatorioFinal(),
@@ -191,17 +207,19 @@ final class EstagioModel extends Model {
             ":periodo_estagio_inicio" => $vo->getPeriodoEstagioInicio(),
             ":periodo_estagio_fim" => $vo->getPeriodoEstagioFim(),
         ];
-    
+
         return $db->execute($query, $binds);
     }
 
-    public function update($vo) {
+    public function update($vo)
+    {
         $db = new Database();
-        $query = "UPDATE estagio SET
+        $query = "UPDATE estagios SET
             id_estudante = :id_estudante,
             id_curso_estagio = :id_curso_estagio,
             id_professor_orientador = :id_professor_orientador,
             id_professor_coorientador = :id_professor_coorientador,
+            id_empresa_estagio = :id_empresa_estagio,
             encaminhamentos_secoes_estagio = :encaminhamentos_secoes_estagio,
             plano_atividades = :plano_atividades,
             relatorio_final = :relatorio_final,
@@ -220,11 +238,12 @@ final class EstagioModel extends Model {
             periodo_estagio_fim = :periodo_estagio_fim
         WHERE id_estagio = :id_estagio";
         $binds = [
-            ":id_estagio" => $vo->getIdEstagio(),
-            ":id_estudante" => $vo->getIdEstudante(),
-            ":id_curso_estagio" => $vo->getIdCursoEstagio(),
-            ":id_professor_orientador" => $vo->getIdProfessorOrientador(),
-            ":id_professor_coorientador" => $vo->getIdProfessorCoorientador(),
+            ":id_estagio" => $vo->getId(),
+            ":id_estudante" => $vo->getEstudanteEstagio(),
+            ":id_curso_estagio" => $vo->getCursoEstagio(),
+            ":id_professor_orientador" => $vo->getProfessorOrientador(),
+            ":id_professor_coorientador" => $vo->getProfessorCoorientador(),
+            ":id_empresa_estagio" => $vo->getEmpresaEstagio(),
             ":encaminhamentos_secoes_estagio" => $vo->getEncaminhamentosSecoesEstagio(),
             ":plano_atividades" => $vo->getPlanoAtividades(),
             ":relatorio_final" => $vo->getRelatorioFinal(),
@@ -242,15 +261,16 @@ final class EstagioModel extends Model {
             ":periodo_estagio_inicio" => $vo->getPeriodoEstagioInicio(),
             ":periodo_estagio_fim" => $vo->getPeriodoEstagioFim(),
         ];
-    
+
         return $db->execute($query, $binds);
     }
 
-    public function delete($vo) {
+    public function delete($vo)
+    {
         $db = new Database();
-        $query = "DELETE FROM estagio WHERE id_estagio = :id_estagio";
-        $binds = [":id_estagio" => $vo->getIdEstagio()];
-    
+        $query = "DELETE FROM estagios WHERE id_estagio = :id_estagio";
+        $binds = [":id_estagio" => $vo->getId()];
+
         return $db->execute($query, $binds);
     }
 }

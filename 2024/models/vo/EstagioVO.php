@@ -3,13 +3,12 @@
 namespace Model\VO;
 
 final class EstagioVO extends VO {
-
-    private $id_estagio;
-    private $id_estudante;
-    private $nome_estudante;
-    private $id_curso_estagio;
-    private $id_professor_orientador;
-    private $id_professor_coorientador;
+    
+    private $estudante_estagio;
+    private $curso_estagio;
+    private $professor_orientador;
+    private $professor_coorientador;
+    private $empresa_estagio;
     private $encaminhamentos_secoes_estagio;
     private $plano_atividades;
     private $relatorio_final;
@@ -27,13 +26,13 @@ final class EstagioVO extends VO {
     private $periodo_estagio_inicio;
     private $periodo_estagio_fim;
 
-    public function __construct($id_estagio = 0,$id_estudante = 0, $nome_estudante = "", $id_curso_estagio = 0, $id_professor_orientador = 0, $id_professor_coorientador = 0, $encaminhamentos_secoes_estagio = "", $plano_atividades = "", $relatorio_final = "", $ficha_autoavaliacao = "",$ficha_avaliacao_empresa = "", $termo_compromisso = "",$supervisor_empresa = "",$cargo_formacao_supervisor = "",$telefone_supervisor_empresa = "",$email_supervisor_empresa = "",$numero_convenio = "",$tipo_processo = "",$status_processo = "",$carga_horaria = 0,$periodo_estagio_inicio = NULL,$periodo_estagio_fim = NULL,) {
+    public function __construct($id_estagio = 0,$estudante_estagio = "", $curso_estagio = "", $professor_orientador = "", $professor_coorientador = "",$empresa_estagio = "" , $encaminhamentos_secoes_estagio = "", $plano_atividades = "", $relatorio_final = "", $ficha_autoavaliacao = "",$ficha_avaliacao_empresa = "", $termo_compromisso = "",$supervisor_empresa = "",$cargo_formacao_supervisor = "",$telefone_supervisor_empresa = "",$email_supervisor_empresa = "",$numero_convenio = "",$tipo_processo = "", $status_processo = "",$carga_horaria = 0,$periodo_estagio_inicio = NULL, $periodo_estagio_fim = NULL,) {
         parent::__construct($id_estagio);
-        $this->id_estudante = $id_estudante;
-        $this->nome_estudante = $nome_estudante;
-        $this->id_curso_estagio = $id_curso_estagio;
-        $this->id_professor_orientador = $id_professor_orientador;
-        $this->id_professor_coorientador = $id_professor_coorientador;
+        $this->estudante_estagio = $estudante_estagio;
+        $this->curso_estagio = $curso_estagio;
+        $this->professor_orientador = $professor_orientador;
+        $this->professor_coorientador = $professor_coorientador;
+        $this->empresa_estagio = $empresa_estagio;
         $this->encaminhamentos_secoes_estagio = $encaminhamentos_secoes_estagio;
         $this->plano_atividades = $plano_atividades;
         $this->relatorio_final = $relatorio_final;
@@ -51,53 +50,44 @@ final class EstagioVO extends VO {
         $this->periodo_estagio_inicio = $periodo_estagio_inicio;
         $this->periodo_estagio_fim = $periodo_estagio_fim;
     } 
-
-    public function getIdEstagio() {
-        return $this->id_estagio;
+    public function getEstudanteEstagio() {
+        return $this->estudante_estagio;
     }
 
-    public function setIdEstagio($id_estagio) {
-        $this->id_estagio = $id_estagio;
+    public function setEstudanteEstagio($estudante) {
+        $this->estudante_estagio = $estudante;
     }
 
-    public function getIdEstudante() {
-        return $this->id_estudante;
+    public function getCursoEstagio() {
+        return $this->curso_estagio;
     }
 
-    public function setIdEstudante($id_estudante) {
-        $this->id_estudante = $id_estudante;
+    public function setCursoEstagio($curso_estagio) {
+        $this->curso_estagio = $curso_estagio;
     }
 
-    public function getNomeEstudante() {
-        return $this->nome_estudante;
+    public function getProfessorOrientador() {
+        return $this->professor_orientador;
     }
 
-    public function setNomeEstudante($nome_estudante) {
-        $this->nome_estudante = $nome_estudante;
+    public function setProfessorOrientador($professor_orientador) {
+        $this->professor_orientador = $professor_orientador;
     }
 
-    public function getIdCursoEstagio() {
-        return $this->id_curso_estagio;
+    public function getProfessorCoorientador() {
+        return $this->professor_coorientador;
     }
 
-    public function setIdCursoEstagio($id_curso_estagio) {
-        $this->id_curso_estagio = $id_curso_estagio;
+    public function setProfessorCoorientador($professor_coorientador) {
+        $this->professor_coorientador = $professor_coorientador;
     }
 
-    public function getIdProfessorOrientador() {
-        return $this->id_professor_orientador;
+    public function getEmpresaEstagio() {
+        return $this->empresa_estagio;
     }
 
-    public function setIdProfessorOrientador($id_professor_orientador) {
-        $this->id_professor_orientador = $id_professor_orientador;
-    }
-
-    public function getIdProfessorCoorientador() {
-        return $this->id_professor_coorientador;
-    }
-
-    public function setIdProfessorCoorientador($id_professor_coorientador) {
-        $this->id_professor_coorientador = $id_professor_coorientador;
+    public function SetEmpresaEstagio($empresa_estagio) {
+        $this->empresa_estagio = $empresa_estagio;
     }
 
     public function getEncaminhamentosSecoesEstagio() {

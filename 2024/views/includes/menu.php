@@ -8,9 +8,11 @@
 </head>
 <body>
     <header>
+        <button id="button"></button>
         <div class="menu-header">
             <h1 class="logo">Sistema de Estágio</h1>
         </div>
+        <a href="logout.php" class="logout">Sair</a>
     </header>
     <aside class="side-menu">
         <nav class="menu-nav">
@@ -23,7 +25,10 @@
                 <li><a href="estagios.php">Estágios</a></li>
                 <li><a href="cursos.php">Cursos</a></li>
                 <li><a href="representantes.php">Representantes</a></li>
-                <li><a href="logout.php">Deslogar</a></li>
+                
+            </ul>
+            <ul>
+                <li class="logout"></li>
             </ul>
         </nav>
     </aside>
@@ -31,10 +36,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const sideMenu = document.querySelector(".side-menu");
-            const toggleMenu = document.createElement("button");
+            const toggleMenu = document.getElementById("button");
             toggleMenu.textContent = "☰";
             toggleMenu.classList.add("menu-toggle");
-            toggleMenu.style.position = "fixed";
             toggleMenu.style.top = "10px";
             toggleMenu.style.left = "10px";
             toggleMenu.style.zIndex = "1100";
@@ -43,8 +47,6 @@
             toggleMenu.style.border = "none";
             toggleMenu.style.borderRadius = "5px";
             toggleMenu.style.padding = "10px";
-
-            document.body.appendChild(toggleMenu);
 
             toggleMenu.addEventListener("click", function () {
                 sideMenu.classList.toggle("active");

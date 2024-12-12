@@ -122,6 +122,18 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout{
+    color: #ffffff;
+}
+
+.sair{
+    color: #ffffff;
+    margin: 0;
 }
 
 .menu-header .logo {
@@ -129,6 +141,7 @@ header {
     font-weight: bold;
     margin: 0;
     color: #ffffff;
+    
 }
 
 .side-menu {

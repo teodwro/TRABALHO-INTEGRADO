@@ -10,8 +10,9 @@ final class EmpresaVO extends VO {
     private $email_empresa;
     private $cnpj_empresa;
     private $representante_empresa;
+    private $cidade_empresa;
 
-    public function __construct($id = 0, $nome_empresa = "", $endereco_empresa = "", $telefone_empresa = "", $email_empresa = "", $cnpj_empresa = "", $representante_empresa = "") {
+    public function __construct($id = 0, $nome_empresa = "", $endereco_empresa = "", $telefone_empresa = "", $email_empresa = "", $cnpj_empresa = "", $representante_empresa = "", $cidade_empresa="") {
         parent::__construct($id);
         $this->nome_empresa = $nome_empresa;
         $this->endereco_empresa = $endereco_empresa;
@@ -19,6 +20,7 @@ final class EmpresaVO extends VO {
         $this->email_empresa = $email_empresa;
         $this->cnpj_empresa = $cnpj_empresa;
         $this->representante_empresa = $representante_empresa;
+        $this->cidade_empresa = $cidade_empresa;
     }
 
     public function getNomeEmpresa() {
@@ -67,5 +69,13 @@ final class EmpresaVO extends VO {
 
     public function setRepresentanteEmpresa($representante_empresa) {
         $this->representante_empresa = $representante_empresa;
+    }
+
+    public function getCidadeEmpresa() {
+        return $this->cidade_empresa;
+    }
+
+    public function setCidadeEmpresa($cidade_empresa) {
+        $this->cidade_empresa = $cidade_empresa;
     }
 }

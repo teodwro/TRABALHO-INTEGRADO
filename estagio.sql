@@ -109,7 +109,7 @@ CREATE TABLE `estagios` (
   `status_processo` varchar(50) DEFAULT NULL,
   `periodo_estagio_inicio` date DEFAULT NULL,
   `periodo_estagio_fim` date DEFAULT NULL,
-  `carga_horaria` varchar(255) DEFAULT NULL
+  `carga_horaria` varchar(255) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -137,15 +137,18 @@ CREATE TABLE `estudantes` (
   `cidade_id` int(11) NOT NULL,
   `telefone` varchar(15) DEFAULT NULL,
   `matricula` varchar(20) NOT NULL,
+<<<<<<< Updated upstream
   `ano_letivo` date DEFAULT NULL
+=======
+>>>>>>> Stashed changes
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `estudantes`
 --
 
-INSERT INTO `estudantes` (`id`, `nome_estudante`, `cpf`, `rg`, `email`, `endereco`, `cidade_id`, `telefone`, `matricula`, `ano_letivo`) VALUES
-(5, 'nfsduisdfn', '3556', '356365365', '635365hdg@A', 'trwtwr4tw', 3, '426556356', '3653565335', NULL);
+INSERT INTO `estudantes` (`id`, `nome_estudante`, `cpf`, `rg`, `email`, `endereco`, `cidade_id`, `telefone`, `matricula`) VALUES
+(5, 'nfsduisdfn', '3556', '356365365', '635365hdg@A', 'trwtwr4tw', 3, '426556356', '3653565335');
 
 -- --------------------------------------------------------
 

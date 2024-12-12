@@ -12,8 +12,28 @@ use Model\ProfessorModel;
 use Model\VO\ProfessorVO;
 use Model\EmpresaModel;
 use Model\VO\EmpresaVO;
+use Model\CidadeModel;
+use Model\VO\CidadeVO;
 
 final class EstagioController extends Controller {
+
+    public function filtroEstagio() {
+        $model_curso = new CursoModel();
+        $data_curso = $model_curso->selectAll(new CursoVO());
+        $model_empresa = new EmpresaModel();
+        $data_empresa = $model_empresa->selectAll(new EmpresaVO());
+        $model_professor = new ProfessorModel();
+        $data_professor = $model_professor->selectAll(new ProfessorVO());
+        $model_cidade = new CidadeModel();
+        $data_cidade = $model_cidade->selectAll(new CidadeVO());
+
+        $this->loadView("filtroEstagio", [
+            "cursos" => $data_curso,
+            "empresas" => $data_empresa,
+            "professores" => $data_professor,
+            "cidades" => $data_cidade
+        ]);
+    }
 
     public function list() {
         $model = new EstagioModel();

@@ -39,6 +39,13 @@
                 <option value="<?php echo $representante->getId(); ?>"><?php echo $representante->getNomeRepresentante(); ?></option>    
             <?php } ?>
         </select>
+        
+        <label for="cidade_empresa">Representante da Empresa:</label>
+        <select name="cidade_empresa" id="cidade_empresa" required>
+            <?php foreach($cidades as $cidade){ ?>
+                <option value="<?php echo $cidade->getId(); ?>"><?php echo $cidade->getNome(); ?></option>    
+            <?php } ?>
+        </select>
 
         <button type="submit" aria-label="Salvar empresa">Salvar</button>
     </form>

@@ -6,6 +6,8 @@ use Model\EmpresaModel;
 use Model\VO\EmpresaVO;
 use Model\RepresentanteModel;
 use Model\VO\RepresentanteVO;
+use Model\CidadeModel;
+use Model\VO\CidadeVO;
 
 final class EmpresaController extends Controller {
 
@@ -38,9 +40,13 @@ final class EmpresaController extends Controller {
         $model = new RepresentanteModel();
         $data = $model->selectAll(new RepresentanteVO());
 
+        $model_cidade = new CidadeModel();
+        $data_cidade = $model_cidade->selectAll(new CidadeVO());
+
         $this->loadView("formEmpresa", [
             "empresa" => $empresa,
-            "representantes" => $data
+            "representantes" => $data,
+            "cidades" => $data_cidade,
         ]);
     }
 
@@ -53,7 +59,7 @@ final class EmpresaController extends Controller {
 
         $id_empresa = $_POST["id_empresa"];
 
-        $vo = new EmpresaVO($id_empresa, $_POST["nome_empresa"], $_POST["endereco_empresa"], $_POST["telefone_empresa"], $_POST["email_empresa"], $_POST["cnpj_empresa"], $_POST["representante_empresa"]);
+        $vo = new EmpresaVO($id_empresa, $_POST["nome_empresa"], $_POST["endereco_empresa"], $_POST["telefone_empresa"], $_POST["email_empresa"], $_POST["cnpj_empresa"], $_POST["representante_empresa"], $_POST["cidade_empresa"]);
         $model = new EmpresaModel();
 
         if(empty($id_empresa)) {

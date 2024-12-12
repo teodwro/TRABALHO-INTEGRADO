@@ -5,8 +5,59 @@ namespace Model;
 use Model\VO\EstagioVO;
 use Model\Database;
 
-final class EstagioModel extends Model
-{
+final class EstagioModel extends Model {
+
+    public function filterEstagios($filters) {
+        $db = new Database();
+
+        $query = "SELECT 
+                    e.id_estagio,
+                    e.nome_estudante,
+                    e.nome_empresa,
+                    e.nome_professor_orientador,
+                    e.data_inicio,
+                    e.data_fim,
+                    e.cidade
+                  FROM estagios e
+                  WHERE 1=1";
+
+        $binds = [];
+
+        if ($filters['curso_id']) {
+            $query .= " AND e.curso_id = :curso_id";
+            $binds[':curso_id'] = $filters['curso_id'];
+        }
+        if ($filters['data_inicio']) {
+            $query .= " AND e.data_inicio >= :data_inicio";
+            $binds[':data_inicio'] = $filters['data_inicio'];
+        }
+        if ($filters['data_fim']) {
+            $query .= " AND e.data_fim <= :data_fim";
+            $binds[':data_fim'] = $filters['data_fim'];
+        }
+        if ($filters['nome_estudante']) {
+            $query .= " AND e.nome_estudante LIKE :nome_estudante";
+            $binds[':nome_estudante'] = "%" . $filters['nome_estudante'] . "%";
+        }
+        if ($filters['nome_empresa']) {
+            $query .= " AND e.nome_empresa LIKE :nome_empresa";
+            $binds[':nome_empresa'] = "%" . $filters['nome_empresa'] . "%";
+        }
+        if ($filters['nome_professor_orientador']) {
+            $query .= " AND e.nome_professor_orientador LIKE :nome_professor_orientador";
+            $binds[':nome_professor_orientador'] = "%" . $filters['nome_professor_orientador'] . "%";
+        }
+        if ($filters['cidade']) {
+            $query .= " AND e.cidade LIKE :cidade";
+            $binds[':cidade'] = "%" . $filters['cidade'] . "%";
+        }
+
+        // Executa a consulta
+        $data = $db->select($query, $binds);
+
+        return $data;
+    }
+
     public function selectAll($vo)
     {
         $db = new Database();

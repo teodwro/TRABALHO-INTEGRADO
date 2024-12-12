@@ -8,12 +8,13 @@
 <?php include("includes/menu.php"); ?>
 
 <h1>Estágios</h1>
+<div class="btns-estagio">
     <a href="filtro.php">Filtrar Estágios</a>
     
     <?php if($_SESSION["usuario"]->getNivel() == 2) { ?>
         <a href="estagio.php">Incluir novo</a>
     <?php } ?>
-
+    </div>
 <div class="table-container">
     
     <table>

@@ -1,4 +1,4 @@
-<form method="POST" action="/estagio/filterEstagios">
+<form method="POST" action="filtrarEstagio.php">
     <h2>Filtrar Estágios</h2>
     
     <label for="curso_estagio">Curso:</label>
@@ -28,10 +28,11 @@
     <label for="filtro_professor">Nome Professor Orientador:</label>
     <select name="filtro_professor" id="filtro_professor" required>
             <?php foreach ($professores as $professor) { ?>
-                <option value="<?php echo $professor->getId(); ?>"><?php echo $empresa->getNomeProfessor(); ?></option>    
+                <option value="<?php echo $professor->getId(); ?>"><?php echo $professor->getNomeProfessor(); ?></option>    
             <?php } ?>
     </select>
-
+    
+    <label for="filtro_cidade">Cidade:</label>
     <select name="filtro_cidade" id="filtro_cidade" required>
             <?php foreach ($cidades as $cidades) { ?>
                 <option value="<?php echo $cidades->getId(); ?>"><?php echo $cidades->getNome(); ?></option>    

@@ -4,7 +4,7 @@
     <h1>Filtrar Estágios</h1>
     
 
-    <a href="listaEstagios.php">Cancelar filtragem</a>
+    <a href="estagios.php">Cancelar filtragem</a>
 
     <label for="curso_estagio">Curso:</label>
         <select name="filtro_curso" id="filtro_curso" required>
@@ -16,11 +16,8 @@
     <label for="filtro_estudante">Nome Estudante:</label>
     <input type="text" name="filtro_estudante" id="filtro_estudante" placeholder="Digite o nome do estudante">
 
-    <label for="filtro_data_inicio">Data Início:</label>
-    <input type="date" name="filtro_data_inicio" id="filtro_data_inicio">
-
-    <label for="filtro_data_fim">Data Fim:</label>
-    <input type="date" name="filtro_data_fim" id="filtro_data_fim">
+    <label for="filtro_data">Data do Estágio:</label>
+    <input type="date" name="filtro_data" id="filtro_data">
     
     <label for="filtro_empresa">Nome Empresa:</label>
     <select name="filtro_empresa" id="filtro_empresa" required>

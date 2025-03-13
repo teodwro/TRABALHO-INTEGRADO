@@ -34,7 +34,6 @@
 
         <label for="representante_empresa">Representante da Empresa:</label>
         <select name="representante_empresa" id="representante_empresa" required>
-            <option value="0" disabled selected>Selecione uma opção</option>
             <?php foreach($representantes as $representante){ ?>
                 <option value="<?php echo $representante->getId(); ?>"><?php echo $representante->getNomeRepresentante(); ?></option>    
             <?php } ?>

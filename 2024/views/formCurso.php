@@ -21,7 +21,6 @@
         
         <label for="professor_curso">Professor:</label>
         <select name="professor_curso" id="professor_curso" required>
-            <option value="0" disabled selected>Selecione uma opção</option>
            <?php foreach($professores as $professor){ ?>
                 <option value="<?php echo $professor->getId(); ?>"><?php echo $professor->getNomeProfessor(); ?></option>    
             <?php } ?>

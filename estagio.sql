@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/12/2024 às 08:25
+-- Tempo de geração: 12/12/2024 às 10:47
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -32,16 +32,6 @@ CREATE TABLE `cidades` (
   `nome` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `cidades`
---
-
-INSERT INTO `cidades` (`id`, `nome`) VALUES
-(1, '8888'),
-(2, '8888'),
-(3, '555'),
-(4, '0000000');
-
 -- --------------------------------------------------------
 
 --
@@ -53,13 +43,6 @@ CREATE TABLE `cursos` (
   `nome_curso` varchar(255) NOT NULL,
   `professor_curso` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `cursos`
---
-
-INSERT INTO `cursos` (`id_curso`, `nome_curso`, `professor_curso`) VALUES
-(1, 'INFORMATICA', '1');
 
 -- --------------------------------------------------------
 
@@ -77,13 +60,6 @@ CREATE TABLE `empresas` (
   `representante_empresa` int(11) DEFAULT NULL,
   `cidade_empresa` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `empresas`
---
-
-INSERT INTO `empresas` (`id_empresa`, `nome_empresa`, `endereco_empresa`, `telefone_empresa`, `email_empresa`, `cnpj_empresa`, `representante_empresa`, `cidade_empresa`) VALUES
-(6, '58857578', '57857858', '857578', 'iryiryyriry#@88888888', '5357375', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -134,15 +110,6 @@ CREATE TABLE `estudantes` (
   `matricula` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `estudantes`
---
-
-INSERT INTO `estudantes` (`id`, `nome_estudante`, `cpf`, `rg`, `email`, `endereco`, `cidade_id`, `telefone`, `matricula`) VALUES
-(2, 'doze', '6356356', '356356365', '365365356365', '635365356#@a', 3, '356356', '735537735'),
-(3, 'ghddghdgh5', '575475', '68448684', '684468468', '468684', 3, '846468', '846846'),
-(4, 'jfgjfgsssssssssssssssssssssssssssss', '47467', '864846846', '468468846', '684468486', 3, '846468486', '684468');
-
 -- --------------------------------------------------------
 
 --
@@ -154,13 +121,6 @@ CREATE TABLE `professores` (
   `nome_professor` varchar(255) NOT NULL,
   `email_professor` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `professores`
---
-
-INSERT INTO `professores` (`id_professor`, `nome_professor`, `email_professor`) VALUES
-(1, 'RAFAEL JAQUES', 'sfdggsg@a3522534245');
 
 -- --------------------------------------------------------
 
@@ -176,13 +136,6 @@ CREATE TABLE `representantes` (
   `rg_representante` varchar(20) DEFAULT NULL,
   `email_representante` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `representantes`
---
-
-INSERT INTO `representantes` (`id_representante`, `nome_representante`, `funcao_representante`, `cpf_representante`, `rg_representante`, `email_representante`) VALUES
-(1, 'rtyrytyrtrytyrt', 'rtyyrtyrtrty', '644646', '648864684', '684486684@yyy');
 
 -- --------------------------------------------------------
 
@@ -202,8 +155,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `login`, `senha`, `nivel`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 2),
-(2, 'thyago salva', '202cb962ac59075b964b07152d234b70', 1);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 2);
 
 --
 -- Índices para tabelas despejadas
@@ -277,13 +229,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `cidades`
 --
 ALTER TABLE `cidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `cursos`
 --
 ALTER TABLE `cursos`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `empresas`
@@ -295,7 +247,7 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de tabela `estagios`
 --
 ALTER TABLE `estagios`
-  MODIFY `id_estagio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_estagio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `estudantes`
@@ -313,7 +265,7 @@ ALTER TABLE `professores`
 -- AUTO_INCREMENT de tabela `representantes`
 --
 ALTER TABLE `representantes`
-  MODIFY `id_representante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_representante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
